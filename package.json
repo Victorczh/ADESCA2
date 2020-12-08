@@ -14,7 +14,15 @@
         "express": "^4.17.1",
         "jsonschema": "^1.4.0",
         "moment": "^2.29.1",
-        "pg": "^8.5.0"
+        "pg": "^8.5.0",
+        "async": "^3.2.0",
+        "chalk": "^4.1.0",
+        "jest": "^26.4.2",
+        "jest-circus": "^26.5.2",
+        "jest-html-reporters": "^2.1.0",
+        "loadtest": "^5.1.0",
+        "morgan": "^1.10.0",
+        "supertest": "^4.0.2"
     },
     "devDependencies": {
         "async": "^3.2.0",
