@@ -309,8 +309,7 @@ app.post('/customer/queue', function (req, res, next) {
  */
 app.get('/customer/queue', function (req, res, next) {
     var customer_id = req.query.customer_id;
-    if (customer_id !== '') customer_id = parseInt(req.query.customer_id)
-    else customer_id = undefined;
+    if (customer_id !== undefined) customer_id = parseInt(req.query.customer_id)
     var queueIdCaseSensitive = req.query.queue_id;
     // JSON validation
     var queueIdValidator = validator.isValid(queueIdCaseSensitive, validator.checkQueueId);
