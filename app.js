@@ -271,7 +271,8 @@ app.get('/company/queue', function (req,res,next) {
                 }
                 console.log(result[0].queue_id)
                 console.log(result.length)
-                    res.status(200).send(result[0].queue_id);
+                console.log(result)
+                    res.status(200).send(result);
             }
             else {
                 next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
