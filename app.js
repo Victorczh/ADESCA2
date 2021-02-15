@@ -262,7 +262,6 @@ app.get('/company/queue', function (req,res,next) {
                 if(result == "") {
                     res.status(200).send(output);
                 }
-                output[i] = { timestamp: moment(from).add(i, 'seconds').format('YYYY-M-DTHH:mm:ss.000[Z]'), count: "0" };
                         for (let a = 0; a < result.length; a++) {
                             const status = 0
                             if (result[a].status == true) {
