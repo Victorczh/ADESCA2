@@ -35,6 +35,9 @@ app.use(express.json());
  * ========================== RESET API =========================
  */
 
+
+
+
 /**
  * Reset API
  */
@@ -248,6 +251,28 @@ app.get('/company/arrival_rate', function (req, res, next) {
         next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
     }
 });
+
+app.get('/customer/queue', (req,res,next) => {
+    const company_id = req.body.company_id;
+    var check10digits = validator.isValid(company_id, validator.check10digit);
+    // If pass the JSON validation
+    if (check10digits) {
+        database.getQueue(company_id, function (err, result) {
+            if (!err) {
+                console(result)
+            }
+            else {
+                
+            }
+        });
+    }// Validation failed - company_id
+    else if (!check10digits) {
+        next({ body: errors.INVALID_BODY_COMPANY.body, status: errors.INVALID_BODY_COMPANY.status });
+    }
+    else {
+        next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
+    }
+})
 
 /**
  * ========================== CUSTOMER =========================
