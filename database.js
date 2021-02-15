@@ -88,7 +88,7 @@ function getQueue(company_id, callback) {
             return callback(err, null);
         }
         else {
-            return callback(null, res);
+            return callback(null, res.rows);
         }
     });
 }
