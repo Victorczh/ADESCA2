@@ -258,7 +258,7 @@ app.get('/company/queue', function (req,res,next) {
     // If pass the JSON validation
         database.getQueue(company_id, function (err, result) {
             if (!err) {
-                const output = [];
+                const output = [{i: 1}];
                 if(result == "") {
                     res.status(200).send(output);
                 }
