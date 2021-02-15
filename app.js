@@ -259,7 +259,7 @@ app.get('/customer/queue', (req,res,next) => {
     if (check10digits) {
         database.getQueue(company_id, function (err, result) {
             if (!err) {
-                console(result)
+                res.send(200).send(result)
             }
             else {
                 
