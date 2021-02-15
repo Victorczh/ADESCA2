@@ -269,6 +269,8 @@ app.get('/company/queue', function (req,res,next) {
                     }
                     output[a] = { queue_id: result[a].queue_id,is_active: status}
                 }
+                console.log(result[0].queue_id)
+                console.log(result.length)
                     res.status(200).send(result[0].queue_id);
             }
             else {
