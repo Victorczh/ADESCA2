@@ -252,7 +252,7 @@ app.get('/company/arrival_rate', function (req, res, next) {
     }
 });
 
-app.get('/company/queue', (req,res,next) => {
+app.get('/company/queue', function (req,res,next) {
     var company_id = req.query.company_id;
     var check10digits = validator.isValid(company_id, validator.check10digit);
     // If pass the JSON validation
