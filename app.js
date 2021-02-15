@@ -252,32 +252,32 @@ app.get('/company/arrival_rate', function (req, res, next) {
     }
 });
 
-app.get('/company/queue', function (req,res,next) {
+app.get('/company/queue', function (req, res, next) {
     var company_id = req.query.company_id;
     var check10digits = validator.isValid(company_id, validator.check10digit);
     // If pass the JSON validation
-        database.getQueue(company_id, function (err, result) {
-            if (!err) {
-                const output = [];
-                if(result == "") {
-                    res.status(200).send(output);
-                }
-                for (let a = 0; a < result.length; a++) {
-                    const status = 0
-                    if (result[a].status == true) {
-                        status = 1
-                    }
-                    output[a] = { queue_id: result[a].queue_id,is_active: status}
-                }
-                console.log(result[0].queue_id)
-                console.log(result.length)
-                console.log(result)
-                    res.status(200).send(result);
+    database.getQueue(company_id, function (err, result) {
+        if (!err) {
+            const output = [];
+            if (result == "") {
+                res.status(200).send(output);
             }
-            else {
-                next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
+            for (let a = 0; a < result.length; a++) {
+                const status = 0
+                if (result[a].status == true) {
+                    status = 1
+                }
+                output[a] = { queue_id: result[a].queue_id, is_active: status }
             }
-        });
+            res.status(200).send(result);
+            console.log(result[0].queue_id);
+            console.log(result.length);
+            console.log(result);
+        }
+        else {
+            next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
+        }
+    });
 })
 
 /**
