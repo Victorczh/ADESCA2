@@ -256,22 +256,14 @@ app.get('/company/queue', function (req,res,next) {
     var company_id = req.query.company_id;
     var check10digits = validator.isValid(company_id, validator.check10digit);
     // If pass the JSON validation
-    if (check10digits) {
         database.getQueue(company_id, function (err, result) {
             if (!err) {
                 res.send(200).send(result)
             }
             else {
-                
+                next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
             }
         });
-    }// Validation failed - company_id
-    else if (!check10digits) {
-        next({ body: errors.INVALID_BODY_COMPANY.body, status: errors.INVALID_BODY_COMPANY.status });
-    }
-    else {
-        next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
-    }
 })
 
 /**
