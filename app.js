@@ -270,9 +270,6 @@ app.get('/company/queue', function (req, res, next) {
                 output[a] = { queue_id: result[a].queue_id, is_active: status }
             }
             res.status(200).send(result);
-            console.log(result[0].queue_id);
-            console.log(result.length);
-            console.log(result);
         }
         else {
             next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
