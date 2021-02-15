@@ -258,7 +258,19 @@ app.get('/company/queue', function (req,res,next) {
     // If pass the JSON validation
         database.getQueue(company_id, function (err, result) {
             if (!err) {
-                res.send(200).send(result)
+                const output = [];
+                if(result == "") {
+                    res.status(200).send(output);
+                }
+                output[i] = { timestamp: moment(from).add(i, 'seconds').format('YYYY-M-DTHH:mm:ss.000[Z]'), count: "0" };
+                        for (let a = 0; a < result.length; a++) {
+                            const status = 0
+                            if (result[a].status == true) {
+                                status = 1
+                            }
+                            output[a] = { queue_id: result[a].queue_id,is_active: status}
+                        }
+                    res.status(200).send(output);
             }
             else {
                 next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
