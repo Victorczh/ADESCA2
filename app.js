@@ -258,19 +258,19 @@ app.get('/company/queue', function (req, res, next) {
     // If pass the JSON validation
     database.getQueue(company_id, function (err, result) {
         if (!err) {
-            const output = [];
+            let output = [];
             if (result == "") {
                 res.status(200).send(output);
             }
             else {
                 for (let a = 0; a < result.length; a++) {
-                    const status = 0
+                    var status = 0
                     if (result[a].status == true) {
                         status = 1
                     }
                     output[a] = { queue_id: result[a].queue_id, is_active: status }
                 }
-                res.status(200).send(result);
+                res.status(200).send(output);
             }
         }
         else {
