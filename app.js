@@ -262,14 +262,16 @@ app.get('/company/queue', function (req, res, next) {
             if (result == "") {
                 res.status(200).send(output);
             }
-            for (let a = 0; a < result.length; a++) {
-                const status = 0
-                if (result[a].status == true) {
-                    status = 1
+            else {
+                for (let a = 0; a < result.length; a++) {
+                    const status = 0
+                    if (result[a].status == true) {
+                        status = 1
+                    }
+                    output[a] = { queue_id: result[a].queue_id, is_active: status }
                 }
-                output[a] = { queue_id: result[a].queue_id, is_active: status }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
         }
         else {
             next({ body: { error: err.message, code: 'UNEXPECTED_ERROR' }, status: 500 });
